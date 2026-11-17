@@ -16,13 +16,7 @@ import { colors, radius } from '../theme';
 
 const PROGRESS_DURATION = 3000; // ms para llenar la barra
 
-/**
- * Ejercicio 2: componente de carga.
- * Al MONTARSE (useEffect con []), arranca dos animaciones a la vez:
- *  - Un spinner que gira infinitamente (withRepeat con -1).
- *  - Una barra de progreso que se llena de 0% a 100% y vuelve a empezar.
- * Al desmontarse, se cancelan las animaciones.
- */
+
 function LoadingIndicator() {
   const rotation = useSharedValue(0);
   const pulse = useSharedValue(1);
@@ -30,21 +24,21 @@ function LoadingIndicator() {
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    // Spinner infinito
+  
     rotation.value = withRepeat(
       withTiming(360, { duration: 1000, easing: Easing.linear }),
       -1,
       false,
     );
 
-    // Pulso suave del punto central
+
     pulse.value = withRepeat(
       withSequence(withTiming(1.25, { duration: 500 }), withTiming(1, { duration: 500 })),
       -1,
       false,
     );
 
-    // Barra de progreso: 0 → 1, pausa y reinicia
+   
     progress.value = withRepeat(
       withSequence(
         withTiming(1, { duration: PROGRESS_DURATION, easing: Easing.inOut(Easing.cubic) }),
@@ -62,7 +56,7 @@ function LoadingIndicator() {
     };
   }, [rotation, pulse, progress]);
 
-  // Actualiza el texto del porcentaje solo cuando cambia el número entero.
+
   useAnimatedReaction(
     () => Math.round(progress.value * 100),
     (current, previous) => {
@@ -101,8 +95,7 @@ function LoadingIndicator() {
 }
 
 export default function LoadingScreen() {
-  // Cambiar la "key" desmonta y vuelve a montar el componente,
-  // así se ve que la animación arranca sola al montarse.
+
   const [mountKey, setMountKey] = useState(0);
   const [visible, setVisible] = useState(true);
 

@@ -14,15 +14,7 @@ import { colors } from '../theme';
 const SIZE = 110;
 const MAX_ROTATION = 35; // grados
 
-/**
- * Ejercicio 1: Drag & Drop con rotación.
- * - La posición se guarda en translateX / translateY.
- * - Mientras se arrastra, el desplazamiento horizontal (dx) se convierte en
- *   rotación: hacia la izquierda gira a la izquierda (negativo), hacia la
- *   derecha gira a la derecha (positivo).
- * - Al soltar, la rotación vuelve a 0 con un resorte y la figura se queda
- *   donde la dejaste (limitada al área visible).
- */
+
 export default function DragRotateScreen() {
   const [area, setArea] = useState({ width: 0, height: 0 });
 
@@ -38,7 +30,6 @@ export default function DragRotateScreen() {
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
     setArea({ width, height });
-    // La figura empieza centrada, así que puede moverse la mitad del espacio libre.
     maxX.value = (width - SIZE) / 2;
     maxY.value = (height - SIZE) / 2;
   };
@@ -52,11 +43,9 @@ export default function DragRotateScreen() {
     },
     onUpdate: (e) => {
       'worklet';
-      // Mantener la figura dentro del área.
       translateX.value = Math.min(Math.max(startX.value + e.translationX, -maxX.value), maxX.value);
       translateY.value = Math.min(Math.max(startY.value + e.translationY, -maxY.value), maxY.value);
 
-      // Rotación proporcional al movimiento horizontal.
       rotation.value = interpolate(
         e.translationX,
         [-150, 0, 150],
@@ -80,7 +69,7 @@ export default function DragRotateScreen() {
     ],
   }));
 
-  // Etiqueta que indica hacia dónde está girando.
+
   const leftLabel = useAnimatedStyle(() => ({ opacity: rotation.value < -3 ? 1 : 0.25 }));
   const rightLabel = useAnimatedStyle(() => ({ opacity: rotation.value > 3 ? 1 : 0.25 }));
 

@@ -28,10 +28,7 @@ type CardProps = {
   itemWidth: number;
 };
 
-/**
- * Cada tarjeta calcula su propia animación según qué tan lejos está del centro.
- * inputRange = [anterior, actual, siguiente] posición de scroll.
- */
+
 function CarouselCard({ item, index, scrollX, itemWidth }: CardProps) {
   const style = useAnimatedStyle(() => {
     const inputRange = [(index - 1) * itemWidth, index * itemWidth, (index + 1) * itemWidth];
@@ -79,12 +76,7 @@ function Dot({ index, scrollX, itemWidth }: { index: number; scrollX: SharedValu
   return <Animated.View style={[styles.dot, style]} />;
 }
 
-/**
- * Ejercicio 5: carrusel de tarjetas.
- * - ScrollView horizontal con pagingEnabled (una tarjeta por página).
- * - useAnimatedScrollHandler guarda el scroll en un SharedValue (hilo de UI).
- * - Cada tarjeta interpola escala, rotación (Z y 3D en Y), desplazamiento y opacidad.
- */
+
 export default function CarouselScreen() {
   const [itemWidth, setItemWidth] = useState(0);
   const [current, setCurrent] = useState(0);

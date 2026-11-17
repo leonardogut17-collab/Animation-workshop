@@ -10,12 +10,7 @@ import Animated, {
 import ScreenContainer from '../components/ScreenContainer';
 import { colors } from '../theme';
 
-/**
- * Ejercicio 4: animación de rebote.
- * - onBegin (dedo abajo): la figura se reduce rápido a 0.75 con withTiming.
- * - onFinalize (dedo arriba): vuelve a 1 con withSpring de poco
- *   amortiguamiento (damping bajo), lo que genera el efecto de rebote.
- */
+
 export default function BounceScreen() {
   const scale = useSharedValue(1);
   const pressed = useSharedValue(0);

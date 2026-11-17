@@ -3,15 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { colors, radius } from '../theme';
 
 type Props = {
-  /** Instrucción breve que se muestra arriba del ejercicio. */
   hint: string;
   children: ReactNode;
 };
 
-/**
- * Contenedor común de cada ejercicio: una tarjeta con la instrucción
- * y un área de juego que ocupa el resto de la pantalla.
- */
+
 export default function ScreenContainer({ hint, children }: Props) {
   return (
     <View style={styles.screen}>

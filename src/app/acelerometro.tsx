@@ -12,19 +12,13 @@ import Animated, {
 import ScreenContainer from '../components/ScreenContainer';
 import { colors, radius } from '../theme';
 
-// El acelerómetro mide en "g" (1 g ≈ gravedad). En reposo la magnitud ≈ 1.
-// Si la magnitud supera este umbral, consideramos que el usuario sacudió el teléfono.
+
+
 const SHAKE_THRESHOLD = 1.8;
-const COOLDOWN_MS = 1000; // evita disparar la animación muchas veces seguidas
+const COOLDOWN_MS = 1000; 
 const UPDATE_INTERVAL_MS = 100;
 
-/**
- * Ejercicio 6: animación con el acelerómetro.
- * - Nos suscribimos a Accelerometer (expo-sensors) al montar y nos
- *   desuscribimos al desmontar.
- * - Calculamos la magnitud del vector (x, y, z). Si pasa el umbral,
- *   se dispara una animación de "temblor" (withSequence + withRepeat).
- */
+
 export default function AccelerometerScreen() {
   const [available, setAvailable] = useState<boolean | null>(null);
   const [data, setData] = useState({ x: 0, y: 0, z: 0 });

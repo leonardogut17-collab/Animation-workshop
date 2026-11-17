@@ -9,8 +9,7 @@ import { colors } from '../theme';
 
 type IconName = ComponentProps<typeof Ionicons>['name'];
 
-// Cada ejercicio es una ruta (archivo) dentro de src/app.
-// El Drawer se arma a partir de esta lista.
+
 const SCREENS: { name: string; title: string; icon: IconName }[] = [
   { name: 'index', title: 'Inicio', icon: 'home-outline' },
   { name: 'arrastrar', title: '1. Arrastrar y rotar', icon: 'move-outline' },
@@ -35,7 +34,6 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
 
 export default function RootLayout() {
   return (
-    // GestureHandlerRootView debe envolver toda la app para que funcionen los gestos.
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="light" />
       <Drawer

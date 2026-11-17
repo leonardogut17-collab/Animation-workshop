@@ -18,17 +18,7 @@ import { colors, radius } from '../theme';
 const MIN_SCALE = 0.5;
 const MAX_SCALE = 4;
 
-/**
- * Ejercicio 3: gestos multitouch sobre una imagen.
- * Se combinan tres gestos que funcionan AL MISMO TIEMPO (useSimultaneousGestures):
- *  - Pan (1 o 2 dedos): mover.
- *  - Pinch (2 dedos): zoom in / zoom out.
- *  - Rotation (2 dedos): rotar.
- * Doble toque = restablecer.
- *
- * Para cada transformación guardamos el valor acumulado ("saved") y el
- * valor durante el gesto, así el siguiente gesto continúa desde donde quedó.
- */
+
 export default function MultitouchScreen() {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
